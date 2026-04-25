@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -17,11 +17,11 @@ namespace Lab4_23
             InitializeComponent();
         }
 
-        //  Обработчики кнопок
+        //  РћР±СЂР°Р±РѕС‚С‡РёРєРё РєРЅРѕРїРѕРє
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            // Сначала ищем файл рядом с exe
+            // РЎРЅР°С‡Р°Р»Р° РёС‰РµРј С„Р°Р№Р» СЂСЏРґРѕРј СЃ exe
             string defaultFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "energy_graph.txt");
             if (!File.Exists(defaultFile))
                 defaultFile = Path.Combine(Directory.GetCurrentDirectory(), "energy_graph.txt");
@@ -34,8 +34,8 @@ namespace Lab4_23
             {
                 using var dlg = new OpenFileDialog
                 {
-                    Title = "Выберите файл графа",
-                    Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"
+                    Title = "Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» РіСЂР°С„Р°",
+                    Filter = "РўРµРєСЃС‚РѕРІС‹Рµ С„Р°Р№Р»С‹ (*.txt)|*.txt|Р’СЃРµ С„Р°Р№Р»С‹ (*.*)|*.*"
                 };
                 if (dlg.ShowDialog() == DialogResult.OK)
                     LoadGraph(dlg.FileName);
@@ -52,7 +52,7 @@ namespace Lab4_23
         {
             if (!CheckLoaded()) return;
             string start = cmbStart.SelectedItem?.ToString() ?? "";
-            if (string.IsNullOrEmpty(start)) { Warn("Выберите начальную вершину."); return; }
+            if (string.IsNullOrEmpty(start)) { Warn("Р’С‹Р±РµСЂРёС‚Рµ РЅР°С‡Р°Р»СЊРЅСѓСЋ РІРµСЂС€РёРЅСѓ."); return; }
             RunBFS(start);
         }
 
@@ -60,7 +60,7 @@ namespace Lab4_23
         {
             if (!CheckLoaded()) return;
             string start = cmbStart.SelectedItem?.ToString() ?? "";
-            if (string.IsNullOrEmpty(start)) { Warn("Выберите начальную вершину."); return; }
+            if (string.IsNullOrEmpty(start)) { Warn("Р’С‹Р±РµСЂРёС‚Рµ РЅР°С‡Р°Р»СЊРЅСѓСЋ РІРµСЂС€РёРЅСѓ."); return; }
             RunDFS(start);
         }
 
@@ -70,7 +70,7 @@ namespace Lab4_23
             string start = cmbStart.SelectedItem?.ToString() ?? "";
             string end = cmbEnd.SelectedItem?.ToString() ?? "";
             if (string.IsNullOrEmpty(start) || string.IsNullOrEmpty(end))
-            { Warn("Выберите начальную и конечную вершины."); return; }
+            { Warn("Р’С‹Р±РµСЂРёС‚Рµ РЅР°С‡Р°Р»СЊРЅСѓСЋ Рё РєРѕРЅРµС‡РЅСѓСЋ РІРµСЂС€РёРЅС‹."); return; }
             RunReachability(start, end);
         }
 
@@ -84,8 +84,27 @@ namespace Lab4_23
         {
             txtOutput.Clear();
         }
+        // РћР±СЂР°Р±РѕС‚С‡РёРє: Р”РµР№РєСЃС‚СЂР° вЂ” РІСЃРµ СЂР°СЃСЃС‚РѕСЏРЅРёСЏ РѕС‚ РЅР°С‡Р°Р»СЊРЅРѕР№ РІРµСЂС€РёРЅС‹
+        private void btnDijkstraAll_Click(object sender, EventArgs e)
+        {
+            if (!CheckLoaded()) return;
+            string start = cmbStart.SelectedItem?.ToString() ?? "";
+            if (string.IsNullOrEmpty(start)) { Warn("Р’С‹Р±РµСЂРёС‚Рµ РЅР°С‡Р°Р»СЊРЅСѓСЋ РІРµСЂС€РёРЅСѓ."); return; }
+            RunDijkstraAll(start);
+        }
 
-        //  Загрузка графа
+        //РѕР±СЂР°Р±РѕС‚С‡РёРє вЂ” Р”РµР№РєСЃС‚СЂР°, РєСЂР°С‚С‡Р°Р№С€РёР№ РјР°СЂС€СЂСѓС‚ Aв†’B
+        private void btnDijkstraPath_Click(object sender, EventArgs e)
+        {
+            if (!CheckLoaded()) return;
+            string start = cmbStart.SelectedItem?.ToString() ?? "";
+            string end = cmbEnd.SelectedItem?.ToString() ?? "";
+            if (string.IsNullOrEmpty(start) || string.IsNullOrEmpty(end))
+            { Warn("Р’С‹Р±РµСЂРёС‚Рµ РЅР°С‡Р°Р»СЊРЅСѓСЋ Рё РєРѕРЅРµС‡РЅСѓСЋ РІРµСЂС€РёРЅС‹."); return; }
+            RunDijkstraPath(start, end);
+        }
+
+        //  Р—Р°РіСЂСѓР·РєР° РіСЂР°С„Р°
 
         private void LoadGraph(string path)
         {
@@ -104,47 +123,47 @@ namespace Lab4_23
                 if (cmbStart.Items.Count > 0) cmbStart.SelectedIndex = 0;
                 if (cmbEnd.Items.Count > 1) cmbEnd.SelectedIndex = 1;
 
-                lblStatus.Text = $"Граф загружен: {_graph.Vertices.Count} вершин | Файл: {Path.GetFileName(path)}";
+                lblStatus.Text = $"Р“СЂР°С„ Р·Р°РіСЂСѓР¶РµРЅ: {_graph.Vertices.Count} РІРµСЂС€РёРЅ | Р¤Р°Р№Р»: {Path.GetFileName(path)}";
                 lblStatus.ForeColor = Color.FromArgb(39, 174, 96);
 
                 AppendLine(Color.FromArgb(80, 200, 120),
-                    $"Граф успешно загружен из файла: {path}");
+                    $"Р“СЂР°С„ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅ РёР· С„Р°Р№Р»Р°: {path}");
                 AppendLine(Color.FromArgb(200, 200, 200),
-                    $"   Вершин: {_graph.Vertices.Count}");
+                    $"   Р’РµСЂС€РёРЅ: {_graph.Vertices.Count}");
                 AppendLine(Color.FromArgb(200, 200, 200),
-                    $"   Вершины: {string.Join(", ", _graph.Vertices)}");
+                    $"   Р’РµСЂС€РёРЅС‹: {string.Join(", ", _graph.Vertices)}");
                 AppendLine(Color.Empty, "");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка загрузки файла:\n{ex.Message}", "Ошибка",
+                MessageBox.Show($"РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё С„Р°Р№Р»Р°:\n{ex.Message}", "РћС€РёР±РєР°",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        //  Информация о графе
+        //  РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РіСЂР°С„Рµ
 
         private void ShowGraphInfo()
         {
-            AppendHeader("ИНФОРМАЦИЯ О ГРАФЕ ЭНЕРГОСИСТЕМЫ");
+            AppendHeader("РРќР¤РћР РњРђР¦РРЇ Рћ Р“Р РђР¤Р• Р­РќР•Р Р“РћРЎРРЎРўР•РњР«");
             AppendLine(Color.FromArgb(200, 200, 200),
-                $"Количество вершин: {_graph.Vertices.Count}");
+                $"РљРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ: {_graph.Vertices.Count}");
 
             int edgeCount = 0;
             foreach (string v in _graph.Vertices)
                 edgeCount += _graph.GetNeighbors(v).Count;
             edgeCount /= 2;
 
-            AppendLine(Color.FromArgb(200, 200, 200), $"Количество рёбер: {edgeCount}");
+            AppendLine(Color.FromArgb(200, 200, 200), $"РљРѕР»РёС‡РµСЃС‚РІРѕ СЂС‘Р±РµСЂ: {edgeCount}");
             AppendLine(Color.Empty, "");
-            AppendLine(Color.FromArgb(255, 200, 100), "Список смежности:");
+            AppendLine(Color.FromArgb(255, 200, 100), "РЎРїРёСЃРѕРє СЃРјРµР¶РЅРѕСЃС‚Рё:");
 
             foreach (string v in _graph.Vertices)
             {
                 var neighbors = _graph.GetNeighbors(v);
                 string neighborStr = neighbors.Count > 0
-                    ? string.Join(", ", neighbors.Select(n => $"{n.neighbor} ({n.weight} МВт)"))
-                    : "(нет связей)";
+                    ? string.Join(", ", neighbors.Select(n => $"{n.neighbor} ({n.weight} РњР’С‚)"))
+                    : "(РЅРµС‚ СЃРІСЏР·РµР№)";
                 AppendLine(Color.FromArgb(180, 220, 255), $"  {v}");
                 AppendLine(Color.FromArgb(160, 160, 160), $"    -> {neighborStr}");
             }
@@ -155,14 +174,14 @@ namespace Lab4_23
 
         private void RunBFS(string start)
         {
-            AppendHeader($"BFS — ОБХОД В ШИРИНУ от «{start}»");
+            AppendHeader($"BFS вЂ” РћР‘РҐРћР” Р’ РЁРР РРќРЈ РѕС‚ В«{start}В»");
             AppendLine(Color.FromArgb(160, 160, 160),
-                "Алгоритм: обходит граф уровень за уровнем, используя очередь (Queue).");
+                "РђР»РіРѕСЂРёС‚Рј: РѕР±С…РѕРґРёС‚ РіСЂР°С„ СѓСЂРѕРІРµРЅСЊ Р·Р° СѓСЂРѕРІРЅРµРј, РёСЃРїРѕР»СЊР·СѓСЏ РѕС‡РµСЂРµРґСЊ (Queue).");
             AppendLine(Color.Empty, "");
 
             var order = _graph.BFS(start);
 
-            AppendLine(Color.FromArgb(255, 200, 100), $"Порядок посещения ({order.Count} вершин):");
+            AppendLine(Color.FromArgb(255, 200, 100), $"РџРѕСЂСЏРґРѕРє РїРѕСЃРµС‰РµРЅРёСЏ ({order.Count} РІРµСЂС€РёРЅ):");
             for (int i = 0; i < order.Count; i++)
                 AppendLine(Color.FromArgb(80, 200, 120), $"  {i + 1,2}. {order[i]}");
 
@@ -170,10 +189,10 @@ namespace Lab4_23
             AppendLine(Color.Empty, "");
             if (notVisited.Count > 0)
                 AppendLine(Color.FromArgb(255, 100, 100),
-                    $"Недостижимые вершины ({notVisited.Count}): {string.Join(", ", notVisited)}");
+                    $"РќРµРґРѕСЃС‚РёР¶РёРјС‹Рµ РІРµСЂС€РёРЅС‹ ({notVisited.Count}): {string.Join(", ", notVisited)}");
             else
                 AppendLine(Color.FromArgb(80, 200, 120),
-                    "Все вершины достижимы из данной стартовой вершины.");
+                    "Р’СЃРµ РІРµСЂС€РёРЅС‹ РґРѕСЃС‚РёР¶РёРјС‹ РёР· РґР°РЅРЅРѕР№ СЃС‚Р°СЂС‚РѕРІРѕР№ РІРµСЂС€РёРЅС‹.");
             AppendLine(Color.Empty, "");
         }
 
@@ -181,14 +200,14 @@ namespace Lab4_23
 
         private void RunDFS(string start)
         {
-            AppendHeader($"DFS — ОБХОД В ГЛУБИНУ от «{start}»");
+            AppendHeader($"DFS вЂ” РћР‘РҐРћР” Р’ Р“Р›РЈР‘РРќРЈ РѕС‚ В«{start}В»");
             AppendLine(Color.FromArgb(160, 160, 160),
-                "Алгоритм: уходит как можно глубже по одной ветке, используя стек (Stack).");
+                "РђР»РіРѕСЂРёС‚Рј: СѓС…РѕРґРёС‚ РєР°Рє РјРѕР¶РЅРѕ РіР»СѓР±Р¶Рµ РїРѕ РѕРґРЅРѕР№ РІРµС‚РєРµ, РёСЃРїРѕР»СЊР·СѓСЏ СЃС‚РµРє (Stack).");
             AppendLine(Color.Empty, "");
 
             var order = _graph.DFS(start);
 
-            AppendLine(Color.FromArgb(255, 200, 100), $"Порядок посещения ({order.Count} вершин):");
+            AppendLine(Color.FromArgb(255, 200, 100), $"РџРѕСЂСЏРґРѕРє РїРѕСЃРµС‰РµРЅРёСЏ ({order.Count} РІРµСЂС€РёРЅ):");
             for (int i = 0; i < order.Count; i++)
                 AppendLine(Color.FromArgb(100, 200, 255), $"  {i + 1,2}. {order[i]}");
 
@@ -196,20 +215,20 @@ namespace Lab4_23
             AppendLine(Color.Empty, "");
             if (notVisited.Count > 0)
                 AppendLine(Color.FromArgb(255, 100, 100),
-                    $"Недостижимые вершины ({notVisited.Count}): {string.Join(", ", notVisited)}");
+                    $"РќРµРґРѕСЃС‚РёР¶РёРјС‹Рµ РІРµСЂС€РёРЅС‹ ({notVisited.Count}): {string.Join(", ", notVisited)}");
             else
                 AppendLine(Color.FromArgb(80, 200, 120),
-                    "Все вершины достижимы из данной стартовой вершины.");
+                    "Р’СЃРµ РІРµСЂС€РёРЅС‹ РґРѕСЃС‚РёР¶РёРјС‹ РёР· РґР°РЅРЅРѕР№ СЃС‚Р°СЂС‚РѕРІРѕР№ РІРµСЂС€РёРЅС‹.");
             AppendLine(Color.Empty, "");
         }
 
-        //  Достижимость
+        //  Р”РѕСЃС‚РёР¶РёРјРѕСЃС‚СЊ
 
         private void RunReachability(string source, string target)
         {
-            AppendHeader($"ДОСТИЖИМОСТЬ: «{source}» -> «{target}»");
+            AppendHeader($"Р”РћРЎРўРР–РРњРћРЎРўР¬: В«{source}В» -> В«{target}В»");
             AppendLine(Color.FromArgb(160, 160, 160),
-                "Метод: BFS с восстановлением пути через массив предков.");
+                "РњРµС‚РѕРґ: BFS СЃ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµРј РїСѓС‚Рё С‡РµСЂРµР· РјР°СЃСЃРёРІ РїСЂРµРґРєРѕРІ.");
             AppendLine(Color.Empty, "");
 
             var (reachable, path) = _graph.IsReachable(source, target);
@@ -217,35 +236,35 @@ namespace Lab4_23
             if (reachable)
             {
                 AppendLine(Color.FromArgb(80, 200, 120),
-                    $"Вершина «{target}» ДОСТИЖИМА из «{source}».");
+                    $"Р’РµСЂС€РёРЅР° В«{target}В» Р”РћРЎРўРР–РРњРђ РёР· В«{source}В».");
                 AppendLine(Color.Empty, "");
                 AppendLine(Color.FromArgb(255, 200, 100),
-                    $"Путь ({path.Count - 1} переход(ов)):");
+                    $"РџСѓС‚СЊ ({path.Count - 1} РїРµСЂРµС…РѕРґ(РѕРІ)):");
                 AppendLine(Color.FromArgb(180, 220, 255),
                     "  " + string.Join(" -> ", path));
             }
             else
             {
                 AppendLine(Color.FromArgb(255, 100, 100),
-                    $"Вершина «{target}» НЕДОСТИЖИМА из «{source}».");
+                    $"Р’РµСЂС€РёРЅР° В«{target}В» РќР•Р”РћРЎРўРР–РРњРђ РёР· В«{source}В».");
                 AppendLine(Color.FromArgb(160, 160, 160),
-                    "Вершины находятся в разных компонентах связности.");
+                    "Р’РµСЂС€РёРЅС‹ РЅР°С…РѕРґСЏС‚СЃСЏ РІ СЂР°Р·РЅС‹С… РєРѕРјРїРѕРЅРµРЅС‚Р°С… СЃРІСЏР·РЅРѕСЃС‚Рё.");
             }
             AppendLine(Color.Empty, "");
         }
 
-        //  Компоненты связности
+        //  РљРѕРјРїРѕРЅРµРЅС‚С‹ СЃРІСЏР·РЅРѕСЃС‚Рё
 
         private void RunComponents()
         {
-            AppendHeader("КОМПОНЕНТЫ СВЯЗНОСТИ ГРАФА");
+            AppendHeader("РљРћРњРџРћРќР•РќРўР« РЎР’РЇР—РќРћРЎРўР Р“Р РђР¤Рђ");
             AppendLine(Color.FromArgb(160, 160, 160),
-                "Метод: последовательный BFS для всех непосещённых вершин.");
+                "РњРµС‚РѕРґ: РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅС‹Р№ BFS РґР»СЏ РІСЃРµС… РЅРµРїРѕСЃРµС‰С‘РЅРЅС‹С… РІРµСЂС€РёРЅ.");
             AppendLine(Color.Empty, "");
 
             var components = _graph.GetConnectedComponents();
 
-            AppendLine(Color.FromArgb(255, 200, 100), $"Найдено компонент: {components.Count}");
+            AppendLine(Color.FromArgb(255, 200, 100), $"РќР°Р№РґРµРЅРѕ РєРѕРјРїРѕРЅРµРЅС‚: {components.Count}");
             AppendLine(Color.Empty, "");
 
             for (int i = 0; i < components.Count; i++)
@@ -254,21 +273,103 @@ namespace Lab4_23
                 Color c = i == 0
                     ? Color.FromArgb(80, 200, 120)
                     : Color.FromArgb(255, 150, 80);
-                AppendLine(c, $"  Компонента {i + 1} ({comp.Count} вершин):");
+                AppendLine(c, $"  РљРѕРјРїРѕРЅРµРЅС‚Р° {i + 1} ({comp.Count} РІРµСЂС€РёРЅ):");
                 AppendLine(Color.FromArgb(180, 220, 255), "    " + string.Join(", ", comp));
             }
 
             AppendLine(Color.Empty, "");
             if (components.Count == 1)
                 AppendLine(Color.FromArgb(80, 200, 120),
-                    "Граф связный — все узлы энергосистемы соединены.");
+                    "Р“СЂР°С„ СЃРІСЏР·РЅС‹Р№ вЂ” РІСЃРµ СѓР·Р»С‹ СЌРЅРµСЂРіРѕСЃРёСЃС‚РµРјС‹ СЃРѕРµРґРёРЅРµРЅС‹.");
             else
                 AppendLine(Color.FromArgb(255, 100, 100),
-                    $"Граф несвязный — {components.Count} изолированных сегмента энергосети.");
+                    $"Р“СЂР°С„ РЅРµСЃРІСЏР·РЅС‹Р№ вЂ” {components.Count} РёР·РѕР»РёСЂРѕРІР°РЅРЅС‹С… СЃРµРіРјРµРЅС‚Р° СЌРЅРµСЂРіРѕСЃРµС‚Рё.");
             AppendLine(Color.Empty, "");
         }
 
-        //  Вспомогательные методы вывода
+        //  Р”РµР№РєСЃС‚СЂР°: РІСЃРµ СЂР°СЃСЃС‚РѕСЏРЅРёСЏ РѕС‚ СЃС‚Р°СЂС‚РѕРІРѕР№ РІРµСЂС€РёРЅС‹
+
+        private void RunDijkstraAll(string source)
+        {
+            AppendHeader($"Р”Р•Р™РљРЎРўР Рђ вЂ” Р’РЎР• Р РђРЎРЎРўРћРЇРќРРЇ РѕС‚ В«{source}В»");
+            AppendLine(Color.FromArgb(160, 160, 160),
+                "РђР»РіРѕСЂРёС‚Рј: Р¶Р°РґРЅС‹Р№ РІС‹Р±РѕСЂ РЅРµРїРѕСЃРµС‰С‘РЅРЅРѕР№ РІРµСЂС€РёРЅС‹ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј СЂР°СЃСЃС‚РѕСЏРЅРёРµРј,");
+            AppendLine(Color.FromArgb(160, 160, 160),
+                "Р·Р°С‚РµРј СЂРµР»Р°РєСЃР°С†РёСЏ СЂС‘Р±РµСЂ: d[v] = min(d[v], d[u] + w(u,v)).");
+            AppendLine(Color.Empty, "");
+
+            // Р·Р°РїСѓСЃРєР°РµРј Р”РµР№РєСЃС‚СЂСѓ РѕС‚ РІС‹Р±СЂР°РЅРЅРѕР№ РІРµСЂС€РёРЅС‹
+            var (dist, _) = _graph.Dijkstra(source);
+
+            // СЃРѕСЂС‚РёСЂСѓРµРј РїРѕ СЂР°СЃСЃС‚РѕСЏРЅРёСЋ РґР»СЏ СѓРґРѕР±РЅРѕРіРѕ РІС‹РІРѕРґР°
+            var sorted = dist.OrderBy(kv => kv.Value).ToList();
+
+            AppendLine(Color.FromArgb(255, 200, 100),
+                $"{"Р’РµСЂС€РёРЅР°",-30} {"Р Р°СЃСЃС‚РѕСЏРЅРёРµ (РњР’С‚)",15}");
+            AppendLine(Color.FromArgb(100, 100, 100),
+                new string('-', 48));
+
+            foreach (var kv in sorted)
+            {
+                // Р›Р 5 Р”РћР‘РђР’Р›Р•РќРћ: int.MaxValue РѕР·РЅР°С‡Р°РµС‚ РЅРµРґРѕСЃС‚РёР¶РёРјСѓСЋ РІРµСЂС€РёРЅСѓ
+                string distStr = kv.Value == int.MaxValue ? "РЅРµРґРѕСЃС‚РёР¶РёРјР°" : kv.Value.ToString();
+                Color c = kv.Value == int.MaxValue
+                    ? Color.FromArgb(255, 100, 100)
+                    : Color.FromArgb(80, 200, 120);
+                AppendLine(c, $"  {kv.Key,-28} {distStr,15}");
+            }
+            AppendLine(Color.Empty, "");
+        }
+
+        //  Р”РµР№РєСЃС‚СЂР°: РєСЂР°С‚С‡Р°Р№С€РёР№ РјР°СЂС€СЂСѓС‚ РјРµР¶РґСѓ РґРІСѓРјСЏ РІРµСЂС€РёРЅР°РјРё
+
+        private void RunDijkstraPath(string source, string target)
+        {
+            AppendHeader($"Р”Р•Р™РљРЎРўР Рђ вЂ” РњРђР РЁР РЈРў В«{source}В» в†’ В«{target}В»");
+            AppendLine(Color.FromArgb(160, 160, 160),
+                "РђР»РіРѕСЂРёС‚Рј Р”РµР№РєСЃС‚СЂС‹ СЃ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµРј РїСѓС‚Рё С‡РµСЂРµР· СЃР»РѕРІР°СЂСЊ РїСЂРµРґРєРѕРІ.");
+            AppendLine(Color.Empty, "");
+
+            //Р·Р°РїСѓСЃРєР°РµРј Р”РµР№РєСЃС‚СЂСѓ Рё РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїСѓС‚СЊ
+            var (dist, previous) = _graph.Dijkstra(source);
+            var path = _graph.GetDijkstraPath(previous, source, target);
+
+            if (path.Count == 0)
+            {
+                AppendLine(Color.FromArgb(255, 100, 100),
+                    $"РњР°СЂС€СЂСѓС‚ РѕС‚ В«{source}В» РґРѕ В«{target}В» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.");
+                AppendLine(Color.FromArgb(160, 160, 160),
+                    "Р’РµСЂС€РёРЅС‹ РЅР°С…РѕРґСЏС‚СЃСЏ РІ СЂР°Р·РЅС‹С… РєРѕРјРїРѕРЅРµРЅС‚Р°С… СЃРІСЏР·РЅРѕСЃС‚Рё.");
+            }
+            else
+            {
+                //РІС‹РІРѕРґРёРј СЃСѓРјРјР°СЂРЅРѕРµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ Рё РјР°СЂС€СЂСѓС‚
+                int totalDist = dist[target];
+                AppendLine(Color.FromArgb(80, 200, 120),
+                    $"РљСЂР°С‚С‡Р°Р№С€РµРµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ: {totalDist} РњР’С‚");
+                AppendLine(Color.Empty, "");
+                AppendLine(Color.FromArgb(255, 200, 100),
+                    $"РњР°СЂС€СЂСѓС‚ ({path.Count - 1} РїРµСЂРµС…РѕРґ(РѕРІ)):");
+                AppendLine(Color.FromArgb(180, 220, 255),
+                    "  " + string.Join(" в†’ ", path));
+
+                AppendLine(Color.Empty, "");
+                AppendLine(Color.FromArgb(255, 200, 100), "РўСЂР°СЃСЃРёСЂРѕРІРєР° РїСѓС‚Рё:");
+                int cumulative = 0;
+                for (int i = 0; i < path.Count - 1; i++)
+                {
+                    string from = path[i];
+                    string to = path[i + 1];
+                    int edgeW = _graph.GetNeighbors(from)
+                                      .First(n => n.neighbor == to).weight;
+                    cumulative += edgeW;
+                    AppendLine(Color.FromArgb(160, 200, 160),
+                        $"  {from} в†’ {to}  [{edgeW} РњР’С‚]  (РёС‚РѕРіРѕ: {cumulative} РњР’С‚)");
+                }
+            }
+            AppendLine(Color.Empty, "");
+        }
+        //  Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РјРµС‚РѕРґС‹ РІС‹РІРѕРґР°
         private void AppendHeader(string text)
         {
             string sep = new string('=', 30);
@@ -289,7 +390,7 @@ namespace Lab4_23
         private bool CheckLoaded()
         {
             if (_graphLoaded) return true;
-            Warn("Сначала загрузите граф (кнопка «Загрузить граф»).");
+            Warn("РЎРЅР°С‡Р°Р»Р° Р·Р°РіСЂСѓР·РёС‚Рµ РіСЂР°С„ (РєРЅРѕРїРєР° В«Р—Р°РіСЂСѓР·РёС‚СЊ РіСЂР°С„В»).");
             return false;
         }
 
