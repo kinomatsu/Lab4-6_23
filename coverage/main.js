@@ -291,8 +291,8 @@ var assemblies = [
     "name": "Lab4_23",
     "classes": [
       { "name": "Lab4_23.ApplicationConfiguration", "rp": "Lab4_23_ApplicationConfiguration.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 29, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Lab4_23.Form1", "rp": "Lab4_23_Form1.html", "cl": 0, "ucl": 459, "cal": 459, "tl": 657, "cb": 0, "tb": 76, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Lab4_23.Graph", "rp": "Lab4_23_Graph.html", "cl": 140, "ucl": 0, "cal": 140, "tl": 237, "cb": 60, "tb": 62, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Lab4_23.Form1", "rp": "Lab4_23_Form1.html", "cl": 0, "ucl": 578, "cal": 578, "tl": 817, "cb": 0, "tb": 108, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Lab4_23.Graph", "rp": "Lab4_23_Graph.html", "cl": 193, "ucl": 0, "cal": 193, "tl": 326, "cb": 85, "tb": 88, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Lab4_23.Program", "rp": "Lab4_23_Program.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 17, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
 ];
@@ -314,6 +314,12 @@ var riskHotspots = [
       { "value": 14, "exceeded": false },
     ]},
   {
+    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "btnDijkstraPath_Click(System.Object,System.EventArgs)", "methodShortName": "btnDijkstraPath_Click(...)", "fileIndex": 0, "line": 98,
+    "metrics": [
+      { "value": 210, "exceeded": true },
+      { "value": 14, "exceeded": false },
+    ]},
+  {
     "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "btnBfs_Click(System.Object,System.EventArgs)", "methodShortName": "btnBfs_Click(...)", "fileIndex": 0, "line": 52,
     "metrics": [
       { "value": 72, "exceeded": true },
@@ -326,31 +332,49 @@ var riskHotspots = [
       { "value": 8, "exceeded": false },
     ]},
   {
+    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "btnDijkstraAll_Click(System.Object,System.EventArgs)", "methodShortName": "btnDijkstraAll_Click(...)", "fileIndex": 0, "line": 89,
+    "metrics": [
+      { "value": 72, "exceeded": true },
+      { "value": 8, "exceeded": false },
+    ]},
+  {
     "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "btnLoad_Click(System.Object,System.EventArgs)", "methodShortName": "btnLoad_Click(...)", "fileIndex": 0, "line": 23,
     "metrics": [
       { "value": 42, "exceeded": true },
       { "value": 6, "exceeded": false },
     ]},
   {
-    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "LoadGraph(System.String)", "methodShortName": "LoadGraph(...)", "fileIndex": 0, "line": 91,
+    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "LoadGraph(System.String)", "methodShortName": "LoadGraph(...)", "fileIndex": 0, "line": 110,
     "metrics": [
       { "value": 42, "exceeded": true },
       { "value": 6, "exceeded": false },
     ]},
   {
-    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "ShowGraphInfo()", "methodShortName": "ShowGraphInfo()", "fileIndex": 0, "line": 128,
+    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "ShowGraphInfo()", "methodShortName": "ShowGraphInfo()", "fileIndex": 0, "line": 147,
     "metrics": [
       { "value": 42, "exceeded": true },
       { "value": 6, "exceeded": false },
     ]},
   {
-    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "RunComponents()", "methodShortName": "RunComponents()", "fileIndex": 0, "line": 240,
+    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "RunComponents()", "methodShortName": "RunComponents()", "fileIndex": 0, "line": 259,
+    "metrics": [
+      { "value": 42, "exceeded": true },
+      { "value": 6, "exceeded": false },
+    ]},
+  {
+    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "RunDijkstraAll(System.String)", "methodShortName": "RunDijkstraAll(...)", "fileIndex": 0, "line": 293,
     "metrics": [
       { "value": 42, "exceeded": true },
       { "value": 6, "exceeded": false },
     ]},
   {
     "assembly": "Lab4_23", "class": "Lab4_23.Graph", "reportPath": "Lab4_23_Graph.html", "methodName": "LoadFromFile(System.String)", "methodShortName": "LoadFromFile(...)", "fileIndex": 0, "line": 33,
+    "metrics": [
+      { "value": 18, "exceeded": false },
+      { "value": 18, "exceeded": true },
+    ]},
+  {
+    "assembly": "Lab4_23", "class": "Lab4_23.Graph", "reportPath": "Lab4_23_Graph.html", "methodName": "Dijkstra(System.String)", "methodShortName": "Dijkstra(...)", "fileIndex": 0, "line": 244,
     "metrics": [
       { "value": 18, "exceeded": false },
       { "value": 18, "exceeded": true },
