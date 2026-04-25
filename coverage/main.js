@@ -291,8 +291,8 @@ var assemblies = [
     "name": "Lab4_23",
     "classes": [
       { "name": "Lab4_23.ApplicationConfiguration", "rp": "Lab4_23_ApplicationConfiguration.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 29, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Lab4_23.Form1", "rp": "Lab4_23_Form1.html", "cl": 0, "ucl": 578, "cal": 578, "tl": 817, "cb": 0, "tb": 108, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "Lab4_23.Graph", "rp": "Lab4_23_Graph.html", "cl": 193, "ucl": 0, "cal": 193, "tl": 326, "cb": 85, "tb": 88, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Lab4_23.Form1", "rp": "Lab4_23_Form1.html", "cl": 0, "ucl": 690, "cal": 690, "tl": 966, "cb": 0, "tb": 120, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Lab4_23.Graph", "rp": "Lab4_23_Graph.html", "cl": 273, "ucl": 1, "cal": 274, "tl": 462, "cb": 127, "tb": 134, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Lab4_23.Program", "rp": "Lab4_23_Program.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 17, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
 ];
@@ -344,28 +344,40 @@ var riskHotspots = [
       { "value": 6, "exceeded": false },
     ]},
   {
-    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "LoadGraph(System.String)", "methodShortName": "LoadGraph(...)", "fileIndex": 0, "line": 110,
+    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "LoadGraph(System.String)", "methodShortName": "LoadGraph(...)", "fileIndex": 0, "line": 123,
     "metrics": [
       { "value": 42, "exceeded": true },
       { "value": 6, "exceeded": false },
     ]},
   {
-    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "ShowGraphInfo()", "methodShortName": "ShowGraphInfo()", "fileIndex": 0, "line": 147,
+    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "ShowGraphInfo()", "methodShortName": "ShowGraphInfo()", "fileIndex": 0, "line": 160,
     "metrics": [
       { "value": 42, "exceeded": true },
       { "value": 6, "exceeded": false },
     ]},
   {
-    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "RunComponents()", "methodShortName": "RunComponents()", "fileIndex": 0, "line": 259,
+    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "RunComponents()", "methodShortName": "RunComponents()", "fileIndex": 0, "line": 272,
     "metrics": [
       { "value": 42, "exceeded": true },
       { "value": 6, "exceeded": false },
     ]},
   {
-    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "RunDijkstraAll(System.String)", "methodShortName": "RunDijkstraAll(...)", "fileIndex": 0, "line": 293,
+    "assembly": "Lab4_23", "class": "Lab4_23.Form1", "reportPath": "Lab4_23_Form1.html", "methodName": "RunDijkstraAll(System.String)", "methodShortName": "RunDijkstraAll(...)", "fileIndex": 0, "line": 306,
     "metrics": [
       { "value": 42, "exceeded": true },
       { "value": 6, "exceeded": false },
+    ]},
+  {
+    "assembly": "Lab4_23", "class": "Lab4_23.Graph", "reportPath": "Lab4_23_Graph.html", "methodName": "BuildMST_Prim()", "methodShortName": "BuildMST_Prim()", "fileIndex": 0, "line": 405,
+    "metrics": [
+      { "value": 22, "exceeded": false },
+      { "value": 22, "exceeded": true },
+    ]},
+  {
+    "assembly": "Lab4_23", "class": "Lab4_23.Graph", "reportPath": "Lab4_23_Graph.html", "methodName": "Dfs()", "methodShortName": "Dfs()", "fileIndex": 0, "line": 348,
+    "metrics": [
+      { "value": 20, "exceeded": false },
+      { "value": 20, "exceeded": true },
     ]},
   {
     "assembly": "Lab4_23", "class": "Lab4_23.Graph", "reportPath": "Lab4_23_Graph.html", "methodName": "LoadFromFile(System.String)", "methodShortName": "LoadFromFile(...)", "fileIndex": 0, "line": 33,
